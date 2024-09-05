@@ -163,3 +163,4 @@ cython_debug/
 
 # 02-open_source/ollama_files/id_ed25519
 /02-open_source/ollama_files
+/04-monitoring/data
