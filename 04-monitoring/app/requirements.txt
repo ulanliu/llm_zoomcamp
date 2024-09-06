@@ -1,0 +1,6 @@
+streamlit
+elasticsearch
+openai
+psycopg2-binary
+uuid
+python-dotenv
