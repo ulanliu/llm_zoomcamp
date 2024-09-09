@@ -16,6 +16,10 @@ class PostgresDB:
         )
         self.create_tables()
 
+    def conn_close(self):
+        self.conn.close()
+        print("connection closed")
+
     def create_tables(self):
         with self.conn.cursor() as cur:
             cur.execute("""
@@ -23,7 +27,19 @@ class PostgresDB:
                     id UUID PRIMARY KEY,
                     question TEXT,
                     answer TEXT,
-                    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    course TEXT NOT NULL,
+                    model_used TEXT NOT NULL,
+                    response_time FLOAT NOT NULL,
+                    relevance TEXT NOT NULL,
+                    relevance_explanation TEXT NOT NULL,
+                    prompt_tokens INTEGER NOT NULL,
+                    completion_tokens INTEGER NOT NULL,
+                    total_tokens INTEGER NOT NULL,
+                    eval_prompt_tokens INTEGER NOT NULL,
+                    eval_completion_tokens INTEGER NOT NULL,
+                    eval_total_tokens INTEGER NOT NULL,
+                    openai_cost FLOAT NOT NULL,
+                    timestamp TIMESTAMP WITH TIME ZONE NOT NULL
                 )
             """)
             cur.execute("""
@@ -54,3 +70,4 @@ class PostgresDB:
                 (conversation_id, feedback)
             )
         self.conn.commit()
+        

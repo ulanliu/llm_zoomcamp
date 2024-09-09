@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()  # Load environment variables from .env file
 
-es_client = Elasticsearch(f"http://{os.getenv('ES_HOST')}:{os.getenv('ES_PORT')}")
+es_client = Elasticsearch(os.getenv('ELASTIC_URL_LOCAL'))
 client = OpenAI(
     base_url=os.getenv('OLLAMA_BASE_URL'),
     api_key=os.getenv('OLLAMA_API_KEY')
